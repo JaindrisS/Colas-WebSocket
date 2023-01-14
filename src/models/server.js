@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 const path = require("path");
+const morgan = require("morgan");
 const { socketControllers } = require("../sockets/controllers");
 
 class Server {
@@ -21,7 +22,15 @@ class Server {
 
   middleware() {
     this.app.use(cors());
-
+    this.app.use(
+      morgan(function (tokens, req, res) {
+        return [
+          tokens.method(req, res),
+          tokens.status(req, res),
+          tokens.url(req, res),
+        ];
+      })
+    );
     this.app.use(express.static(path.join(__dirname, "../../src/public/")));
   }
 
