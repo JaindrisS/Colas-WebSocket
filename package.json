@@ -1,8 +1,8 @@
 {
-  "name": "09-websockets-server-javascript",
+  "name": "websockets-colas",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js"
@@ -17,6 +17,7 @@
     "socket.io": "^4.5.4"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.20"
   }
 }
