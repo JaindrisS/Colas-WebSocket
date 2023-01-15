@@ -6,6 +6,7 @@ const socketControllers = (socket) => {
   // Escuchar mensaje desde el servidor
 
   socket.emit("last-ticket", ticketControl.last);
+  socket.emit("estado-actual", ticketControl.lastFour);
 
   socket.on("next-ticket", (payload, callback) => {
     const next = ticketControl.next();
@@ -21,6 +22,8 @@ const socketControllers = (socket) => {
     }
 
     const ticket = ticketControl.attendTicket(escritorio);
+    socket.broadcast.emit("estado-actual", ticketControl.lastFour);
+
     if (!ticket) {
       callback({
         ok: false,
